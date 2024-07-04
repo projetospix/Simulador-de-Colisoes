@@ -1,11 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://csty0hmue6rxn"]
+[gd_scene load_steps=9 format=3 uid="uid://csty0hmue6rxn"]
 
-[ext_resource type="Texture2D" uid="uid://b1wh7e2kwfnv7" path="res://icon.svg" id="1_1ufgm"]
 [ext_resource type="Theme" uid="uid://cbiexu1n8kalx" path="res://tema/tema.tres" id="1_bni1y"]
 [ext_resource type="Script" path="res://Scripts/cena_principal.gd" id="1_rdwce"]
 [ext_resource type="Script" path="res://Scripts/coeficiente_restituicao.gd" id="2_30yyi"]
 [ext_resource type="Script" path="res://Scripts/Bolinha1.gd" id="3_n84es"]
 [ext_resource type="Texture2D" uid="uid://o78id3b1vk4u" path="res://textura_chao.jpg" id="5_geyy6"]
+[ext_resource type="PackedScene" uid="uid://clgwosygnql1v" path="res://Cenas/bolinha.tscn" id="6_stjhs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8uvm"]
 bg_color = Color(0.360784, 0.521569, 0.619608, 1)
@@ -13,12 +13,6 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_dnklc"]
-radius = 29.5
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_mmd2c"]
-radius = 29.2746
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g5n1o"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -285,32 +279,13 @@ texture = ExtResource("5_geyy6")
 expand_mode = 3
 stretch_mode = 1
 
-[node name="Bolinha" type="CharacterBody2D" parent="Cena Principal/Ecrã/Simulador/Chão"]
+[node name="Bolinha" parent="Cena Principal/Ecrã/Simulador/Chão" instance=ExtResource("6_stjhs")]
 unique_name_in_owner = true
-position = Vector2(34, -30)
 
-[node name="Sprite2D" type="Sprite2D" parent="Cena Principal/Ecrã/Simulador/Chão/Bolinha"]
-modulate = Color(1, 0.301961, 1, 1)
-scale = Vector2(0.46875, 0.46875)
-texture = ExtResource("1_1ufgm")
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cena Principal/Ecrã/Simulador/Chão/Bolinha"]
-position = Vector2(-0.5, 0)
-shape = SubResource("CircleShape2D_dnklc")
-
-[node name="Bolinha2" type="CharacterBody2D" parent="Cena Principal/Ecrã/Simulador/Chão"]
+[node name="Bolinha2" parent="Cena Principal/Ecrã/Simulador/Chão" instance=ExtResource("6_stjhs")]
 unique_name_in_owner = true
-position = Vector2(671, -30)
-
-[node name="Sprite2D" type="Sprite2D" parent="Cena Principal/Ecrã/Simulador/Chão/Bolinha2"]
-scale = Vector2(0.46875, 0.46875)
-texture = ExtResource("1_1ufgm")
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cena Principal/Ecrã/Simulador/Chão/Bolinha2"]
-shape = SubResource("CircleShape2D_mmd2c")
-metadata/_edit_lock_ = true
+position = Vector2(670, -30)
+modular = Color(0.552941, 0.309804, 1, 1)
 
 [node name="Borda" type="Panel" parent="Cena Principal/Ecrã/Simulador"]
 clip_contents = true

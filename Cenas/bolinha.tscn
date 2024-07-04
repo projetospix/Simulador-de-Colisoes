@@ -1,0 +1,82 @@
+[gd_scene load_steps=10 format=3 uid="uid://clgwosygnql1v"]
+
+[ext_resource type="Script" path="res://Scripts/bolinha.gd" id="1_3ef4t"]
+[ext_resource type="Script" path="res://Scripts/pupila.gd" id="2_g2plo"]
+[ext_resource type="Texture2D" uid="uid://b1wh7e2kwfnv7" path="res://corpo.svg" id="2_jhnu2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dnklc"]
+radius = 29.5
+
+[sub_resource type="Gradient" id="Gradient_osroq"]
+offsets = PackedFloat32Array(0.967532, 0.993506, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1weop"]
+gradient = SubResource("Gradient_osroq")
+width = 80
+height = 80
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_al7fj"]
+offsets = PackedFloat32Array(0.967532, 0.993506, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xau0b"]
+gradient = SubResource("Gradient_al7fj")
+width = 40
+height = 40
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_drs6x"]
+radius = 142.127
+
+[node name="Bolinha" type="CharacterBody2D"]
+position = Vector2(34, -30)
+script = ExtResource("1_3ef4t")
+
+[node name="Fundo" type="Sprite2D" parent="."]
+modulate = Color(1, 0.301961, 1, 1)
+scale = Vector2(0.46875, 0.46875)
+texture = ExtResource("2_jhnu2")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-0.5, 0)
+shape = SubResource("CircleShape2D_dnklc")
+
+[node name="olhoE" type="Sprite2D" parent="."]
+position = Vector2(-12, -4)
+scale = Vector2(0.175, 0.175)
+texture = SubResource("GradientTexture2D_1weop")
+
+[node name="pupila" type="Sprite2D" parent="olhoE"]
+scale = Vector2(1.14286, 1.14286)
+texture = SubResource("GradientTexture2D_xau0b")
+script = ExtResource("2_g2plo")
+
+[node name="olhoD" type="Sprite2D" parent="."]
+position = Vector2(12, -4)
+scale = Vector2(0.175, 0.175)
+texture = SubResource("GradientTexture2D_1weop")
+
+[node name="pupila" type="Sprite2D" parent="olhoD"]
+scale = Vector2(1.143, 1.143)
+texture = SubResource("GradientTexture2D_xau0b")
+script = ExtResource("2_g2plo")
+
+[node name="AreaProxima" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaProxima"]
+shape = SubResource("CircleShape2D_drs6x")
+
+[connection signal="body_entered" from="AreaProxima" to="olhoE/pupila" method="_on_area_proxima_body_entered"]
+[connection signal="body_entered" from="AreaProxima" to="olhoD/pupila" method="_on_area_proxima_body_entered"]
+[connection signal="body_exited" from="AreaProxima" to="olhoE/pupila" method="_on_area_proxima_body_exited"]
+[connection signal="body_exited" from="AreaProxima" to="olhoD/pupila" method="_on_area_proxima_body_exited"]

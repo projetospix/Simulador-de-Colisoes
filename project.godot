@@ -13,7 +13,7 @@ config_version=5
 config/name="Simulador de Colisões"
 run/main_scene="res://Cenas/cena_principal.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
-config/icon="res://icon.svg"
+config/icon="res://icone.png"
 
 [display]
 

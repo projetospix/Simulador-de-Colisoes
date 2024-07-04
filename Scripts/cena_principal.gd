@@ -1,14 +1,16 @@
 extends HBoxContainer
 
-@onready var bolinha = %Bolinha
-@onready var bolinha2 = %Bolinha2
-@onready var coeficiente = %Coeficiente
+@onready var bolinha := %Bolinha
+@onready var bolinha2 := %Bolinha2
+@onready var coeficiente := %Coeficiente
 
-@onready var painel_bolinha1 = $"Painel de Controle/Bolinha1"
-@onready var painel_bolinha2 = $"Painel de Controle/Bolinha2"
+@onready var painel_bolinha1 := $"Painel de Controle/Bolinha1"
+@onready var painel_bolinha2 := $"Painel de Controle/Bolinha2"
 
-@onready var bolinha_pos_inicial = bolinha.position
-@onready var bolinha2_pos_inicial = bolinha2.position
+@onready var bolinha_pos_inicial:Vector2 = bolinha.position
+@onready var bolinha2_pos_inicial:Vector2 = bolinha2.position
+
+var colidiu := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,7 +19,8 @@ func _ready():
 func _physics_process(delta):
 	var collision = bolinha.move_and_collide(bolinha.velocity * delta)
 	bolinha2.move_and_collide(bolinha2.velocity * delta)
-	if collision:
+	if collision and not colidiu:
+		colidiu = true
 		var velocidade1 = bolinha.velocity
 		var velocidade2 = bolinha2.velocity
 		CalculaVelocidades(painel_bolinha1.m, painel_bolinha1.m, velocidade1, velocidade2, coeficiente.e)
@@ -38,6 +41,7 @@ func _on_iniciar():
 
 
 func _on_reiniciar():
+	colidiu = false
 	bolinha.velocity.x = 0
 	bolinha2.velocity.x = 0
 	bolinha.position = bolinha_pos_inicial
