@@ -2,15 +2,15 @@ extends HBoxContainer
 
 @onready var bolinha = %Bolinha
 @onready var bolinha2 = %Bolinha2
+@onready var coeficiente = %Coeficiente
 
-@export var e: float = 0
-@export var m1: float = 10
-@export var m2: float = 5
+@onready var painel_bolinha1 = $"Painel de Controle/Bolinha1"
+@onready var painel_bolinha2 = $"Painel de Controle/Bolinha2"
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	bolinha.velocity.x = 300
-	bolinha2.velocity.x = -100
+	_on_reiniciar()
 
 func _physics_process(delta):
 	var collision = bolinha.move_and_collide(bolinha.velocity * delta)
@@ -18,7 +18,7 @@ func _physics_process(delta):
 	if collision:
 		var velocidade1 = bolinha.velocity
 		var velocidade2 = bolinha2.velocity
-		CalculaVelocidades(m1, m2, velocidade1, velocidade2, e)
+		CalculaVelocidades(painel_bolinha1.m, painel_bolinha1.m, velocidade1, velocidade2, coeficiente.e)
 
 func CalculaVelocidades(m1, m2, v1_inicial, v2_inicial, e):
 	var v1_final = ((m1 - e * m2)*v1_inicial + m2*(1+e)*v2_inicial)/(m1+m2)  
@@ -26,3 +26,20 @@ func CalculaVelocidades(m1, m2, v1_inicial, v2_inicial, e):
 	print(v1_final, v2_final)	
 	bolinha.velocity = v1_final
 	bolinha2.velocity = v2_final
+
+func _on_iniciar():
+	bolinha.velocity.x = painel_bolinha1.v0*5
+	bolinha2.velocity.x = - painel_bolinha2.v0*5
+	get_tree().set_group("Sliders", "editable", false)
+	%Reiniciar.visible = true
+	%Iniciar.visible = false
+
+
+func _on_reiniciar():
+	bolinha.velocity.x = 0
+	bolinha2.velocity.x = 0
+	bolinha.position = Vector2(30, -30)
+	bolinha2.position = Vector2(545, -30)
+	get_tree().set_group("Sliders", "editable", true)
+	%Iniciar.visible = true
+	%Reiniciar.visible = false
