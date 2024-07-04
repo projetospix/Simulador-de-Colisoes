@@ -1,210 +1,335 @@
-[gd_scene load_steps=7 format=3 uid="uid://csty0hmue6rxn"]
+[gd_scene load_steps=11 format=3 uid="uid://csty0hmue6rxn"]
 
 [ext_resource type="Texture2D" uid="uid://b1wh7e2kwfnv7" path="res://icon.svg" id="1_1ufgm"]
+[ext_resource type="Theme" uid="uid://cbiexu1n8kalx" path="res://tema/tema.tres" id="1_bni1y"]
 [ext_resource type="Script" path="res://Scripts/cena_principal.gd" id="1_rdwce"]
 [ext_resource type="Script" path="res://Scripts/coeficiente_restituicao.gd" id="2_30yyi"]
 [ext_resource type="Script" path="res://Scripts/Bolinha1.gd" id="3_n84es"]
+[ext_resource type="Texture2D" uid="uid://o78id3b1vk4u" path="res://textura_chao.jpg" id="5_geyy6"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3t0s8"]
-bg_color = Color(0.6, 0.835294, 0.6, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8uvm"]
+bg_color = Color(0.360784, 0.521569, 0.619608, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mdpvd"]
-size = Vector2(60, 60)
+[sub_resource type="CircleShape2D" id="CircleShape2D_dnklc"]
+radius = 29.5
 
-[node name="Cena Principal" type="HBoxContainer"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_mmd2c"]
+radius = 29.2746
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g5n1o"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.101961, 0.164706, 0.219608, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="margem" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Cena Principal" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme = ExtResource("1_bni1y")
 script = ExtResource("1_rdwce")
 
-[node name="Painel de Controle" type="VBoxContainer" parent="."]
+[node name="Painel de Controle" type="VBoxContainer" parent="Cena Principal"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Coeficiente" type="Panel" parent="Painel de Controle"]
+[node name="Coeficiente" type="Panel" parent="Cena Principal/Painel de Controle"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("2_30yyi")
 
-[node name="SliderCoeficiente" type="HSlider" parent="Painel de Controle/Coeficiente" groups=["Sliders"]]
-layout_mode = 0
-offset_left = 83.0
-offset_top = 70.0
-offset_right = 479.0
-offset_bottom = 152.0
+[node name="SliderCoeficiente" type="HSlider" parent="Cena Principal/Painel de Controle/Coeficiente" groups=["Sliders"]]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.192
+anchor_right = 1.0
+anchor_bottom = 0.808
+offset_left = 23.0
+offset_top = 0.104
+offset_right = -104.0
+offset_bottom = -0.104004
+grow_horizontal = 2
+grow_vertical = 2
 max_value = 1.0
 step = 0.1
 
-[node name="Titulo" type="Label" parent="Painel de Controle/Coeficiente"]
-layout_mode = 0
-offset_left = 164.0
-offset_top = 62.0
-offset_right = 389.0
-offset_bottom = 85.0
-text = "COEFICENTE DE RESTITUIÇÃO"
-
-[node name="Valor do E" type="Label" parent="Painel de Controle/Coeficiente"]
-layout_mode = 0
-offset_left = 498.0
-offset_top = 93.0
-offset_right = 538.0
-offset_bottom = 116.0
-
-[node name="Tipo Colisão" type="Label" parent="Painel de Controle/Coeficiente"]
-layout_mode = 0
-offset_left = 184.0
-offset_top = 139.0
-offset_right = 346.0
-offset_bottom = 162.0
+[node name="Tipo Colisão" type="Label" parent="Cena Principal/Painel de Controle/Coeficiente/SliderCoeficiente"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -81.0
+offset_top = -23.0
+offset_right = 81.0
+grow_horizontal = 2
+grow_vertical = 0
 text = "COLISÃO INELÁSTICA"
 
-[node name="Bolinha1" type="Panel" parent="Painel de Controle"]
+[node name="Titulo" type="Label" parent="Cena Principal/Painel de Controle/Coeficiente/SliderCoeficiente"]
+layout_mode = 1
+offset_right = 225.0
+offset_bottom = 23.0
+text = "COEFICENTE DE RESTITUIÇÃO"
+
+[node name="Valor do E" type="Label" parent="Cena Principal/Painel de Controle/Coeficiente/SliderCoeficiente"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 22.0
+offset_top = -11.5
+offset_right = 62.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Bolinha1" type="Panel" parent="Cena Principal/Painel de Controle"]
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("3_n84es")
 
-[node name="SliderMassa" type="HSlider" parent="Painel de Controle/Bolinha1" groups=["Sliders"]]
-offset_left = 83.0
-offset_top = 37.0
-offset_right = 479.0
-offset_bottom = 119.0
+[node name="SliderMassa" type="HSlider" parent="Cena Principal/Painel de Controle/Bolinha1" groups=["Sliders"]]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.122
+anchor_right = 1.007
+anchor_bottom = 0.577
+offset_left = 23.0
+offset_top = 0.013998
+offset_right = -108.018
+offset_bottom = 0.098999
+grow_horizontal = 2
+grow_vertical = 2
 min_value = 1.0
 value = 1.0
 
-[node name="SliderV0" type="HSlider" parent="Painel de Controle/Bolinha1" groups=["Sliders"]]
-offset_left = 81.0
-offset_top = 126.0
-offset_right = 477.0
-offset_bottom = 208.0
-value = 50.0
+[node name="Valor Massa" type="Label" parent="Cena Principal/Painel de Controle/Bolinha1/SliderMassa"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 22.0
+offset_top = -11.5
+offset_right = 59.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
 
-[node name="Massa" type="Label" parent="Painel de Controle/Bolinha1"]
-offset_left = 178.0
-offset_top = 36.0
-offset_right = 403.0
-offset_bottom = 59.0
+[node name="Massa" type="Label" parent="Cena Principal/Painel de Controle/Bolinha1/SliderMassa"]
+layout_mode = 1
+offset_right = 225.0
+offset_bottom = 23.0
 text = "MASSA"
 
-[node name="Velocidade Inicial" type="Label" parent="Painel de Controle/Bolinha1"]
-offset_left = 164.0
-offset_top = 123.0
-offset_right = 389.0
-offset_bottom = 146.0
+[node name="SliderV0" type="HSlider" parent="Cena Principal/Painel de Controle/Bolinha1" groups=["Sliders"]]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.577
+anchor_right = 1.0
+anchor_bottom = 0.958
+offset_left = 23.0
+offset_top = 0.098999
+offset_right = -104.0
+offset_bottom = -0.0540161
+grow_horizontal = 2
+grow_vertical = 2
+value = 50.0
+
+[node name="Valor V0" type="Label" parent="Cena Principal/Painel de Controle/Bolinha1/SliderV0"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 30.0
+offset_top = -11.5
+offset_right = 70.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Velocidade Inicial" type="Label" parent="Cena Principal/Painel de Controle/Bolinha1/SliderV0"]
+layout_mode = 1
+offset_right = 225.0
+offset_bottom = 23.0
 text = "VELOCIDADE INICIAL"
 
-[node name="Valor Massa" type="Label" parent="Painel de Controle/Bolinha1"]
-offset_left = 507.0
-offset_top = 64.0
-offset_right = 544.0
-offset_bottom = 87.0
-
-[node name="Valor V0" type="Label" parent="Painel de Controle/Bolinha1"]
-offset_left = 501.0
-offset_top = 144.0
-offset_right = 541.0
-offset_bottom = 167.0
-
-[node name="Bolinha2" type="Panel" parent="Painel de Controle"]
+[node name="Bolinha2" type="Panel" parent="Cena Principal/Painel de Controle"]
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("3_n84es")
 
-[node name="SliderMassa" type="HSlider" parent="Painel de Controle/Bolinha2" groups=["Sliders"]]
-offset_left = 83.0
-offset_top = 37.0
-offset_right = 479.0
-offset_bottom = 119.0
+[node name="SliderMassa" type="HSlider" parent="Cena Principal/Painel de Controle/Bolinha2" groups=["Sliders"]]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.121
+anchor_right = 1.0
+anchor_bottom = 0.579
+offset_left = 23.0
+offset_top = 0.105999
+offset_right = -104.0
+offset_bottom = 0.0939865
+grow_horizontal = 2
+grow_vertical = 2
 min_value = 1.0
 value = 1.0
 
-[node name="SliderV0" type="HSlider" parent="Painel de Controle/Bolinha2" groups=["Sliders"]]
-offset_left = 81.0
-offset_top = 126.0
-offset_right = 477.0
-offset_bottom = 208.0
-value = 50.0
+[node name="Valor Massa" type="Label" parent="Cena Principal/Painel de Controle/Bolinha2/SliderMassa"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 22.0
+offset_top = -11.5
+offset_right = 59.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
 
-[node name="Massa" type="Label" parent="Painel de Controle/Bolinha2"]
-offset_left = 178.0
-offset_top = 36.0
-offset_right = 403.0
-offset_bottom = 59.0
+[node name="Massa" type="Label" parent="Cena Principal/Painel de Controle/Bolinha2/SliderMassa"]
+layout_mode = 1
+offset_right = 225.0
+offset_bottom = 23.0
 text = "MASSA"
 
-[node name="Velocidade Inicial" type="Label" parent="Painel de Controle/Bolinha2"]
-offset_left = 164.0
-offset_top = 123.0
-offset_right = 389.0
-offset_bottom = 146.0
+[node name="SliderV0" type="HSlider" parent="Cena Principal/Painel de Controle/Bolinha2" groups=["Sliders"]]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.575
+anchor_right = 1.007
+anchor_bottom = 0.953
+offset_left = 23.0
+offset_top = -0.0500107
+offset_right = -108.018
+offset_bottom = 0.0579834
+grow_horizontal = 2
+grow_vertical = 2
+value = 50.0
+
+[node name="Valor V0" type="Label" parent="Cena Principal/Painel de Controle/Bolinha2/SliderV0"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 30.0
+offset_top = -11.5
+offset_right = 70.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Velocidade Inicial" type="Label" parent="Cena Principal/Painel de Controle/Bolinha2/SliderV0"]
+layout_mode = 1
+offset_right = 225.0
+offset_bottom = 23.0
 text = "VELOCIDADE INICIAL"
 
-[node name="Valor Massa" type="Label" parent="Painel de Controle/Bolinha2"]
-offset_left = 507.0
-offset_top = 64.0
-offset_right = 544.0
-offset_bottom = 87.0
-
-[node name="Valor V0" type="Label" parent="Painel de Controle/Bolinha2"]
-offset_left = 501.0
-offset_top = 144.0
-offset_right = 541.0
-offset_bottom = 167.0
-
-[node name="Ecrã" type="VBoxContainer" parent="."]
+[node name="Ecrã" type="VBoxContainer" parent="Cena Principal"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.75
 
-[node name="Simulador" type="Panel" parent="Ecrã"]
+[node name="Simulador" type="Panel" parent="Cena Principal/Ecrã"]
 clip_contents = true
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_3t0s8")
+theme_override_styles/panel = SubResource("StyleBoxFlat_q8uvm")
 
-[node name="Chão" type="ColorRect" parent="Ecrã/Simulador"]
-custom_minimum_size = Vector2(0, 200)
+[node name="Chão" type="TextureRect" parent="Cena Principal/Ecrã/Simulador"]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -198.0
+offset_right = -4.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 0
+texture = ExtResource("5_geyy6")
+expand_mode = 3
+stretch_mode = 1
 
-[node name="Bolinha" type="CharacterBody2D" parent="Ecrã/Simulador/Chão"]
+[node name="Bolinha" type="CharacterBody2D" parent="Cena Principal/Ecrã/Simulador/Chão"]
 unique_name_in_owner = true
-position = Vector2(30, -30)
+position = Vector2(34, -30)
 
-[node name="Sprite2D" type="Sprite2D" parent="Ecrã/Simulador/Chão/Bolinha"]
+[node name="Sprite2D" type="Sprite2D" parent="Cena Principal/Ecrã/Simulador/Chão/Bolinha"]
 modulate = Color(1, 0.301961, 1, 1)
 scale = Vector2(0.46875, 0.46875)
 texture = ExtResource("1_1ufgm")
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ecrã/Simulador/Chão/Bolinha"]
-shape = SubResource("RectangleShape2D_mdpvd")
-metadata/_edit_lock_ = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cena Principal/Ecrã/Simulador/Chão/Bolinha"]
+position = Vector2(-0.5, 0)
+shape = SubResource("CircleShape2D_dnklc")
 
-[node name="Bolinha2" type="CharacterBody2D" parent="Ecrã/Simulador/Chão"]
+[node name="Bolinha2" type="CharacterBody2D" parent="Cena Principal/Ecrã/Simulador/Chão"]
 unique_name_in_owner = true
-position = Vector2(545, -31)
+position = Vector2(671, -30)
 
-[node name="Sprite2D" type="Sprite2D" parent="Ecrã/Simulador/Chão/Bolinha2"]
+[node name="Sprite2D" type="Sprite2D" parent="Cena Principal/Ecrã/Simulador/Chão/Bolinha2"]
 scale = Vector2(0.46875, 0.46875)
 texture = ExtResource("1_1ufgm")
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ecrã/Simulador/Chão/Bolinha2"]
-shape = SubResource("RectangleShape2D_mdpvd")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cena Principal/Ecrã/Simulador/Chão/Bolinha2"]
+shape = SubResource("CircleShape2D_mmd2c")
 metadata/_edit_lock_ = true
 
-[node name="Painel de Controle" type="Panel" parent="Ecrã"]
-custom_minimum_size = Vector2(0, 80)
+[node name="Borda" type="Panel" parent="Cena Principal/Ecrã/Simulador"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.00177467
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_g5n1o")
+metadata/_edit_lock_ = true
+
+[node name="Painel de Controle" type="Panel" parent="Cena Principal/Ecrã"]
+custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
 
-[node name="Iniciar" type="Button" parent="Ecrã/Painel de Controle"]
+[node name="Iniciar" type="Button" parent="Cena Principal/Ecrã/Painel de Controle"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -212,15 +337,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -23.5
-offset_top = -15.5
-offset_right = 23.5
-offset_bottom = 15.5
+offset_left = -87.5
+offset_top = -28.0
+offset_right = 87.5
+offset_bottom = 28.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "INICIAR"
 
-[node name="Reiniciar" type="Button" parent="Ecrã/Painel de Controle"]
+[node name="Reiniciar" type="Button" parent="Cena Principal/Ecrã/Painel de Controle"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -228,18 +353,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -23.5
-offset_top = -15.5
-offset_right = 23.5
-offset_bottom = 15.5
+offset_left = -86.5
+offset_top = -28.0
+offset_right = 87.5
+offset_bottom = 28.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "REINICIAR"
 
-[connection signal="value_changed" from="Painel de Controle/Coeficiente/SliderCoeficiente" to="Painel de Controle/Coeficiente" method="_on_value_changed"]
-[connection signal="value_changed" from="Painel de Controle/Bolinha1/SliderMassa" to="Painel de Controle/Bolinha1" method="_on_slider_massa_value_changed"]
-[connection signal="value_changed" from="Painel de Controle/Bolinha1/SliderV0" to="Painel de Controle/Bolinha1" method="_on_slider_v_0_value_changed"]
-[connection signal="value_changed" from="Painel de Controle/Bolinha2/SliderMassa" to="Painel de Controle/Bolinha2" method="_on_slider_massa_value_changed"]
-[connection signal="value_changed" from="Painel de Controle/Bolinha2/SliderV0" to="Painel de Controle/Bolinha2" method="_on_slider_v_0_value_changed"]
-[connection signal="button_up" from="Ecrã/Painel de Controle/Iniciar" to="." method="_on_iniciar"]
-[connection signal="button_up" from="Ecrã/Painel de Controle/Reiniciar" to="." method="_on_reiniciar"]
+[connection signal="value_changed" from="Cena Principal/Painel de Controle/Coeficiente/SliderCoeficiente" to="Cena Principal/Painel de Controle/Coeficiente" method="_on_value_changed"]
+[connection signal="value_changed" from="Cena Principal/Painel de Controle/Bolinha1/SliderMassa" to="Cena Principal/Painel de Controle/Bolinha1" method="_on_slider_massa_value_changed"]
+[connection signal="value_changed" from="Cena Principal/Painel de Controle/Bolinha1/SliderV0" to="Cena Principal/Painel de Controle/Bolinha1" method="_on_slider_v_0_value_changed"]
+[connection signal="value_changed" from="Cena Principal/Painel de Controle/Bolinha2/SliderMassa" to="Cena Principal/Painel de Controle/Bolinha2" method="_on_slider_massa_value_changed"]
+[connection signal="value_changed" from="Cena Principal/Painel de Controle/Bolinha2/SliderV0" to="Cena Principal/Painel de Controle/Bolinha2" method="_on_slider_v_0_value_changed"]
+[connection signal="button_up" from="Cena Principal/Ecrã/Painel de Controle/Iniciar" to="Cena Principal" method="_on_iniciar"]
+[connection signal="button_up" from="Cena Principal/Ecrã/Painel de Controle/Reiniciar" to="Cena Principal" method="_on_reiniciar"]

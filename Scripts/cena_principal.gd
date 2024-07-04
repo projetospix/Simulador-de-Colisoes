@@ -7,6 +7,8 @@ extends HBoxContainer
 @onready var painel_bolinha1 = $"Painel de Controle/Bolinha1"
 @onready var painel_bolinha2 = $"Painel de Controle/Bolinha2"
 
+@onready var bolinha_pos_inicial = bolinha.position
+@onready var bolinha2_pos_inicial = bolinha2.position
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,8 +40,8 @@ func _on_iniciar():
 func _on_reiniciar():
 	bolinha.velocity.x = 0
 	bolinha2.velocity.x = 0
-	bolinha.position = Vector2(30, -30)
-	bolinha2.position = Vector2(545, -30)
+	bolinha.position = bolinha_pos_inicial
+	bolinha2.position = bolinha2_pos_inicial
 	get_tree().set_group("Sliders", "editable", true)
 	%Iniciar.visible = true
 	%Reiniciar.visible = false

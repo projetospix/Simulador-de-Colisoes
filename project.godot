@@ -15,6 +15,11 @@ run/main_scene="res://Cenas/cena_principal.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [rendering]
 
 renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0.4, 0.486275, 0.541176, 1)
