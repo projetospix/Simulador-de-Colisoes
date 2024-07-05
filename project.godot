@@ -19,6 +19,10 @@ config/icon="res://icone.png"
 
 window/stretch/mode="viewport"
 
+[gui]
+
+theme/custom="res://tema/tema.tres"
+
 [rendering]
 
 renderer/rendering_method="mobile"

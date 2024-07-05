@@ -36,6 +36,7 @@ func _on_iniciar():
 	bolinha.velocity.x = painel_bolinha1.v0*5
 	bolinha2.velocity.x = - painel_bolinha2.v0*5
 	get_tree().set_group("Sliders", "editable", false)
+	get_tree().set_group("cadeado", "visible", true)
 	%Reiniciar.visible = true
 	%Iniciar.visible = false
 
@@ -47,5 +48,6 @@ func _on_reiniciar():
 	bolinha.position = bolinha_pos_inicial
 	bolinha2.position = bolinha2_pos_inicial
 	get_tree().set_group("Sliders", "editable", true)
+	get_tree().set_group("cadeado", "visible", false)
 	%Iniciar.visible = true
 	%Reiniciar.visible = false

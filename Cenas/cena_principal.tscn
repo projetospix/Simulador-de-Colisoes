@@ -1,11 +1,46 @@
-[gd_scene load_steps=9 format=3 uid="uid://csty0hmue6rxn"]
+[gd_scene load_steps=14 format=3 uid="uid://csty0hmue6rxn"]
 
 [ext_resource type="Theme" uid="uid://cbiexu1n8kalx" path="res://tema/tema.tres" id="1_bni1y"]
 [ext_resource type="Script" path="res://Scripts/cena_principal.gd" id="1_rdwce"]
 [ext_resource type="Script" path="res://Scripts/coeficiente_restituicao.gd" id="2_30yyi"]
 [ext_resource type="Script" path="res://Scripts/Bolinha1.gd" id="3_n84es"]
+[ext_resource type="Texture2D" uid="uid://buw5pft7noqgr" path="res://lock-simple-fill.svg" id="4_3aliw"]
 [ext_resource type="Texture2D" uid="uid://o78id3b1vk4u" path="res://textura_chao.jpg" id="5_geyy6"]
+[ext_resource type="Texture2D" uid="uid://dp6wxssj76aco" path="res://visor.png" id="5_jrjbv"]
 [ext_resource type="PackedScene" uid="uid://clgwosygnql1v" path="res://Cenas/bolinha.tscn" id="6_stjhs"]
+[ext_resource type="FontFile" uid="uid://cmf25mqn2jcjj" path="res://tema/Maxter Board St.ttf" id="6_wbwec"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bxceh"]
+bg_color = Color(0.1408, 0.22, 0.1012, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.2706, 0.358887, 0.41, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4u1f0"]
+bg_color = Color(0.13684, 0.1012, 0.22, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.2706, 0.358887, 0.41, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8uvm"]
 bg_color = Color(0.360784, 0.521569, 0.619608, 1)
@@ -32,6 +67,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_bni1y")
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -39,74 +75,31 @@ theme_override_constants/margin_bottom = 10
 
 [node name="Cena Principal" type="HBoxContainer" parent="."]
 layout_mode = 2
-theme = ExtResource("1_bni1y")
 script = ExtResource("1_rdwce")
 
 [node name="Painel de Controle" type="VBoxContainer" parent="Cena Principal"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Coeficiente" type="Panel" parent="Cena Principal/Painel de Controle"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 3
-script = ExtResource("2_30yyi")
-
-[node name="SliderCoeficiente" type="HSlider" parent="Cena Principal/Painel de Controle/Coeficiente" groups=["Sliders"]]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.192
-anchor_right = 1.0
-anchor_bottom = 0.808
-offset_left = 23.0
-offset_top = 0.104
-offset_right = -104.0
-offset_bottom = -0.104004
-grow_horizontal = 2
-grow_vertical = 2
-max_value = 1.0
-step = 0.1
-
-[node name="Tipo Colisão" type="Label" parent="Cena Principal/Painel de Controle/Coeficiente/SliderCoeficiente"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -81.0
-offset_top = -23.0
-offset_right = 81.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "COLISÃO INELÁSTICA"
-
-[node name="Titulo" type="Label" parent="Cena Principal/Painel de Controle/Coeficiente/SliderCoeficiente"]
-layout_mode = 1
-offset_right = 225.0
-offset_bottom = 23.0
-text = "COEFICENTE DE RESTITUIÇÃO"
-
-[node name="Valor do E" type="Label" parent="Cena Principal/Painel de Controle/Coeficiente/SliderCoeficiente"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 22.0
-offset_top = -11.5
-offset_right = 62.0
-offset_bottom = 11.5
-grow_horizontal = 0
-grow_vertical = 2
-
 [node name="Bolinha1" type="Panel" parent="Cena Principal/Painel de Controle"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_bxceh")
 script = ExtResource("3_n84es")
+
+[node name="cadeado" type="TextureRect" parent="Cena Principal/Painel de Controle/Bolinha1" groups=["cadeado"]]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -28.0
+offset_top = 10.0
+offset_right = 12.0
+offset_bottom = 50.0
+grow_horizontal = 0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_3aliw")
+expand_mode = 3
 
 [node name="SliderMassa" type="HSlider" parent="Cena Principal/Painel de Controle/Bolinha1" groups=["Sliders"]]
 layout_mode = 1
@@ -117,9 +110,10 @@ anchor_bottom = 0.577
 offset_left = 23.0
 offset_top = 0.013998
 offset_right = -108.018
-offset_bottom = 0.098999
+offset_bottom = -1.896
 grow_horizontal = 2
 grow_vertical = 2
+theme_type_variation = &"SliderVerde"
 min_value = 1.0
 value = 1.0
 
@@ -141,7 +135,7 @@ grow_vertical = 2
 layout_mode = 1
 offset_right = 225.0
 offset_bottom = 23.0
-text = "MASSA"
+text = "Massa"
 
 [node name="SliderV0" type="HSlider" parent="Cena Principal/Painel de Controle/Bolinha1" groups=["Sliders"]]
 layout_mode = 1
@@ -152,9 +146,10 @@ anchor_bottom = 0.958
 offset_left = 23.0
 offset_top = 0.098999
 offset_right = -104.0
-offset_bottom = -0.0540161
+offset_bottom = 13.137
 grow_horizontal = 2
 grow_vertical = 2
+theme_type_variation = &"SliderVerde"
 value = 50.0
 
 [node name="Valor V0" type="Label" parent="Cena Principal/Painel de Controle/Bolinha1/SliderV0"]
@@ -175,12 +170,27 @@ grow_vertical = 2
 layout_mode = 1
 offset_right = 225.0
 offset_bottom = 23.0
-text = "VELOCIDADE INICIAL"
+text = "Velocidade inicial"
 
 [node name="Bolinha2" type="Panel" parent="Cena Principal/Painel de Controle"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_4u1f0")
 script = ExtResource("3_n84es")
+
+[node name="cadeado" type="TextureRect" parent="Cena Principal/Painel de Controle/Bolinha2" groups=["cadeado"]]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -28.0
+offset_top = 10.0
+offset_right = 12.0
+offset_bottom = 50.0
+grow_horizontal = 0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_3aliw")
+expand_mode = 3
 
 [node name="SliderMassa" type="HSlider" parent="Cena Principal/Painel de Controle/Bolinha2" groups=["Sliders"]]
 layout_mode = 1
@@ -191,9 +201,10 @@ anchor_bottom = 0.579
 offset_left = 23.0
 offset_top = 0.105999
 offset_right = -104.0
-offset_bottom = 0.0939865
+offset_bottom = -2.868
 grow_horizontal = 2
 grow_vertical = 2
+theme_type_variation = &"SliderRosa"
 min_value = 1.0
 value = 1.0
 
@@ -215,7 +226,7 @@ grow_vertical = 2
 layout_mode = 1
 offset_right = 225.0
 offset_bottom = 23.0
-text = "MASSA"
+text = "Massa"
 
 [node name="SliderV0" type="HSlider" parent="Cena Principal/Painel de Controle/Bolinha2" groups=["Sliders"]]
 layout_mode = 1
@@ -226,9 +237,10 @@ anchor_bottom = 0.953
 offset_left = 23.0
 offset_top = -0.0500107
 offset_right = -108.018
-offset_bottom = 0.0579834
+offset_bottom = 13.216
 grow_horizontal = 2
 grow_vertical = 2
+theme_type_variation = &"SliderRosa"
 value = 50.0
 
 [node name="Valor V0" type="Label" parent="Cena Principal/Painel de Controle/Bolinha2/SliderV0"]
@@ -249,7 +261,140 @@ grow_vertical = 2
 layout_mode = 1
 offset_right = 225.0
 offset_bottom = 23.0
-text = "VELOCIDADE INICIAL"
+text = "Velocidade inicial"
+
+[node name="Coeficiente" type="Panel" parent="Cena Principal/Painel de Controle"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_30yyi")
+
+[node name="cadeado" type="TextureRect" parent="Cena Principal/Painel de Controle/Coeficiente" groups=["cadeado"]]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -28.0
+offset_top = 10.0
+offset_right = 12.0
+offset_bottom = 50.0
+grow_horizontal = 0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_3aliw")
+expand_mode = 3
+
+[node name="Tela" type="TextureRect" parent="Cena Principal/Painel de Controle/Coeficiente"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -170.0
+offset_top = -69.0
+offset_right = 170.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_jrjbv")
+
+[node name="Tipo Colisão" type="Control" parent="Cena Principal/Painel de Controle/Coeficiente"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -170.0
+offset_top = -59.0
+offset_right = 170.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TiposColisao" type="VBoxContainer" parent="Cena Principal/Painel de Controle/Coeficiente/Tipo Colisão"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -51.5
+offset_top = -3.0
+offset_right = 51.5
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Cena Principal/Painel de Controle/Coeficiente/Tipo Colisão/TiposColisao"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.784314, 0.984314, 0.988235, 1)
+theme_override_fonts/font = ExtResource("6_wbwec")
+theme_override_font_sizes/font_size = 19
+text = "INELÁSTICA"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Label3" type="Label" parent="Cena Principal/Painel de Controle/Coeficiente/Tipo Colisão/TiposColisao"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.784314, 0.984314, 0.988235, 1)
+theme_override_fonts/font = ExtResource("6_wbwec")
+theme_override_font_sizes/font_size = 19
+text = "PARCIALMENTE ELÁSTICA"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Label2" type="Label" parent="Cena Principal/Painel de Controle/Coeficiente/Tipo Colisão/TiposColisao"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.784314, 0.984314, 0.988235, 1)
+theme_override_fonts/font = ExtResource("6_wbwec")
+theme_override_font_sizes/font_size = 19
+text = "ELÁSTICA"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="SliderCoeficiente" type="HSlider" parent="Cena Principal/Painel de Controle/Coeficiente" groups=["Sliders"]]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.192
+anchor_right = 1.0
+anchor_bottom = 0.808
+offset_left = 23.0
+offset_top = 0.0239983
+offset_right = -104.0
+offset_bottom = -35.024
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.1
+
+[node name="Titulo" type="Label" parent="Cena Principal/Painel de Controle/Coeficiente/SliderCoeficiente"]
+layout_mode = 1
+offset_right = 225.0
+offset_bottom = 23.0
+text = "Coeficiente de Restituição"
+
+[node name="Valor do E" type="Label" parent="Cena Principal/Painel de Controle/Coeficiente/SliderCoeficiente"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 22.0
+offset_top = -11.5
+offset_right = 62.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
 
 [node name="Ecrã" type="VBoxContainer" parent="Cena Principal"]
 layout_mode = 2
@@ -281,11 +426,12 @@ stretch_mode = 1
 
 [node name="Bolinha" parent="Cena Principal/Ecrã/Simulador/Chão" instance=ExtResource("6_stjhs")]
 unique_name_in_owner = true
+modular = Color(0.435294, 0.882353, 0.219608, 1)
 
 [node name="Bolinha2" parent="Cena Principal/Ecrã/Simulador/Chão" instance=ExtResource("6_stjhs")]
 unique_name_in_owner = true
 position = Vector2(670, -30)
-modular = Color(0.552941, 0.309804, 1, 1)
+modular = Color(0.607843, 0.439216, 1, 1)
 
 [node name="Borda" type="Panel" parent="Cena Principal/Ecrã/Simulador"]
 clip_contents = true
@@ -301,7 +447,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_g5n1o")
 metadata/_edit_lock_ = true
 
 [node name="Painel de Controle" type="Panel" parent="Cena Principal/Ecrã"]
-custom_minimum_size = Vector2(0, 180)
+custom_minimum_size = Vector2(0, 203)
 layout_mode = 2
 
 [node name="Iniciar" type="Button" parent="Cena Principal/Ecrã/Painel de Controle"]
@@ -334,12 +480,12 @@ offset_right = 87.5
 offset_bottom = 28.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "REINICIAR"
+text = "RECARREGAR"
 
-[connection signal="value_changed" from="Cena Principal/Painel de Controle/Coeficiente/SliderCoeficiente" to="Cena Principal/Painel de Controle/Coeficiente" method="_on_value_changed"]
 [connection signal="value_changed" from="Cena Principal/Painel de Controle/Bolinha1/SliderMassa" to="Cena Principal/Painel de Controle/Bolinha1" method="_on_slider_massa_value_changed"]
 [connection signal="value_changed" from="Cena Principal/Painel de Controle/Bolinha1/SliderV0" to="Cena Principal/Painel de Controle/Bolinha1" method="_on_slider_v_0_value_changed"]
 [connection signal="value_changed" from="Cena Principal/Painel de Controle/Bolinha2/SliderMassa" to="Cena Principal/Painel de Controle/Bolinha2" method="_on_slider_massa_value_changed"]
 [connection signal="value_changed" from="Cena Principal/Painel de Controle/Bolinha2/SliderV0" to="Cena Principal/Painel de Controle/Bolinha2" method="_on_slider_v_0_value_changed"]
+[connection signal="value_changed" from="Cena Principal/Painel de Controle/Coeficiente/SliderCoeficiente" to="Cena Principal/Painel de Controle/Coeficiente" method="_on_value_changed"]
 [connection signal="button_up" from="Cena Principal/Ecrã/Painel de Controle/Iniciar" to="Cena Principal" method="_on_iniciar"]
 [connection signal="button_up" from="Cena Principal/Ecrã/Painel de Controle/Reiniciar" to="Cena Principal" method="_on_reiniciar"]

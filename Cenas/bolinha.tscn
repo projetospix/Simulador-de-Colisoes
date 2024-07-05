@@ -47,7 +47,6 @@ texture = ExtResource("2_jhnu2")
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-0.5, 0)
 shape = SubResource("CircleShape2D_dnklc")
 
@@ -74,6 +73,7 @@ script = ExtResource("2_g2plo")
 [node name="AreaProxima" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaProxima"]
+visible = false
 shape = SubResource("CircleShape2D_drs6x")
 
 [connection signal="body_entered" from="AreaProxima" to="olhoE/pupila" method="_on_area_proxima_body_entered"]
