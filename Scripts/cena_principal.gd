@@ -23,14 +23,20 @@ func _physics_process(delta):
 		colidiu = true
 		var velocidade1 = bolinha.velocity
 		var velocidade2 = bolinha2.velocity
-		CalculaVelocidades(painel_bolinha1.m, painel_bolinha1.m, velocidade1, velocidade2, coeficiente.e)
+		#CentroDeMassa(bolinha.position, bolinha2.position, painel_bolinha1.m, painel_bolinha2.m)
+		CalculaVelocidades(painel_bolinha1.m, painel_bolinha2.m, velocidade1, velocidade2, coeficiente.e)
 
 func CalculaVelocidades(m1, m2, v1_inicial, v2_inicial, e):
 	var v1_final = ((m1 - e * m2)*v1_inicial + m2*(1+e)*v2_inicial)/(m1+m2)  
-	var v2_final = ((m2 - e * m1)*v2_inicial + m2*(1+e)*v1_inicial)/(m1+m2)
+	var v2_final = ((m2 - e * m1)*v2_inicial + m1*(1+e)*v1_inicial)/(m1+m2)
 	print(v1_final, v2_final)	
 	bolinha.velocity = v1_final
 	bolinha2.velocity = v2_final
+	
+	
+#func CentroDeMassa(position1, position2, m1, m2):
+	#var CentroMassa = (m1*position1 + m2*position2)/(m1+m2)
+	#pass	
 
 func _on_iniciar():
 	bolinha.velocity.x = painel_bolinha1.v0*5
