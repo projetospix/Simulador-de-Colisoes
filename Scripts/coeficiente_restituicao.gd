@@ -9,7 +9,7 @@ func _ready():
 
 func _on_value_changed(value):
 	e = value
-	valor_do_e.text = str(e*100)+"%"
+	valor_do_e.text = str(e).replace('.',',')
 	var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	if e == 0:
 		tween.tween_property(tipos_colisao, "position:y", -3, 0.2)
