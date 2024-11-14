@@ -5,7 +5,7 @@ extends Panel
 @onready var tipos_colisao = %TiposColisao
 
 func _ready():
-	valor_do_e.text = "0%"
+	valor_do_e.text = "0"
 
 func _on_value_changed(value):
 	e = value
